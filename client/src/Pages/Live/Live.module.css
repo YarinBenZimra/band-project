@@ -1,0 +1,89 @@
+.wrapper {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: url("../../assets/signup/signupBG.jpg") no-repeat center center
+    fixed;
+  background-size: cover;
+  color: #fff;
+  padding: 24px;
+  text-align: center;
+  overflow: hidden;
+}
+
+h1 {
+  font-size: 2.2rem;
+  margin-bottom: 0.3rem;
+  font-weight: 600;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+h3 {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  font-weight: 400;
+  opacity: 0.9;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.content {
+  max-height: 55vh;
+  overflow-y: auto;
+  font-size: 1.4rem;
+  line-height: 2.4rem;
+  padding: 24px;
+  margin-bottom: 24px;
+  width: 90%;
+  max-width: 800px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  color: #000;
+}
+
+.controls {
+  margin-top: auto;
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  padding: 5% 0;
+}
+
+button {
+  padding: 10px 24px;
+  border: none;
+  border-radius: 32px;
+  font-size: 1rem;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.wordChunk {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 8px;
+  min-width: 1px;
+}
+
+.chord {
+  font-size: 0.85rem;
+  color: #9494ff;
+  line-height: 1rem;
+  font-weight: bold;
+  height: 1rem;
+}
+.lyric {
+  color: #222;
+  font-weight: 500;
+  font-family: "Noto Sans Hebrew", sans-serif;
+}

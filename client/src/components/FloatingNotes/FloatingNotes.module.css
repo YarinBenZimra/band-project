@@ -1,0 +1,35 @@
+.wrapper {
+  position: absolute;
+  inset: 0; /* ממלא את כל החצי השמאלי */
+  overflow: hidden;
+  pointer-events: none; /* שלא יחסום קליקים */
+}
+
+.note {
+  position: absolute;
+  bottom: -2rem; /* מתחיל מתחת לקו התחתון */
+  font-size: 2rem;
+  animation-name: floatUp;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  opacity: 0.8;
+  color: #fff;
+  font-size: 2.2rem;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-110vh) rotate(360deg);
+    opacity: 0;
+  }
+}

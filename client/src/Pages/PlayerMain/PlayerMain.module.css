@@ -1,0 +1,42 @@
+.wrapper {
+  position: relative;
+  height: 100vh;
+  background: radial-gradient(#1a237e, #000);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  overflow: hidden;
+  text-align: center;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 24px;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+}
+
+/* עיגול מסתובב קטן */
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 6px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.userName {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 1.2rem;
+  margin-top: 16px;
+  color: #e3f2fd; /* כחול בהיר */
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "title": "Matanot Ketannot",
+  "artist": "Rami Kleinstein",
+  "image": "Matanot_Ketannot.jpg",
+  "lyrics": [
+    [
+      {
+        "lyrics": "יש",
+        "chords": "Am"
+      },
+      {
+        "lyrics": "אנשים"
+      },
+      {
+        "lyrics": "שלא"
+      },
+      {
+        "lyrics": "רואים",
+        "chords": "F"
+      },
+      {
+        "lyrics": "את"
+      },
+      {
+        "lyrics": "הדברים",
+        "chords": "G"
+      },
+      {
+        "lyrics": "הקטנים"
+      }
+    ],
+    [
+      {
+        "lyrics": "יש"
+      },
+      {
+        "lyrics": "כאלה"
+      },
+      {
+        "lyrics": "שבשבילם"
+      },
+      {
+        "lyrics": "זה",
+        "chords": "C"
+      },
+      {
+        "lyrics": "הכל",
+        "chords": "E"
+      }
+    ],
+    [
+      {
+        "lyrics": "בשבילי",
+        "chords": "Am"
+      },
+      {
+        "lyrics": "זה"
+      },
+      {
+        "lyrics": "כל"
+      },
+      {
+        "lyrics": "העולם",
+        "chords": "F"
+      }
+    ],
+    [
+      {
+        "lyrics": "המתנות",
+        "chords": "G"
+      },
+      {
+        "lyrics": "הקטנות",
+        "chords": "C"
+      }
+    ]
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "title": "Man in the Mirror",
+  "artist": "Michael Jackson",
+  "image": "Man_In_The_Mirror.jpg",
+  "lyrics": [
+    [
+      {
+        "lyrics": "I'm",
+        "chords": "G"
+      },
+      {
+        "lyrics": "gonna"
+      },
+      {
+        "lyrics": "make",
+        "chords": "C"
+      },
+      {
+        "lyrics": "a"
+      },
+      {
+        "lyrics": "change",
+        "chords": "Am"
+      }
+    ],
+    [
+      {
+        "lyrics": "For"
+      },
+      {
+        "lyrics": "once",
+        "chords": "F"
+      },
+      {
+        "lyrics": "in"
+      },
+      {
+        "lyrics": "my",
+        "chords": "G"
+      },
+      {
+        "lyrics": "life"
+      }
+    ],
+    [
+      {
+        "lyrics": "It's",
+        "chords": "C"
+      },
+      {
+        "lyrics": "gonna"
+      },
+      {
+        "lyrics": "feel",
+        "chords": "Am"
+      },
+      {
+        "lyrics": "real"
+      },
+      {
+        "lyrics": "good",
+        "chords": "F"
+      },
+      {
+        "lyrics": "Gonna",
+        "chords": "G"
+      },
+      {
+        "lyrics": "make"
+      },
+      {
+        "lyrics": "a"
+      },
+      {
+        "lyrics": "difference"
+      }
+    ],
+    [
+      {
+        "lyrics": "Gonna",
+        "chords": "C"
+      },
+      {
+        "lyrics": "make"
+      },
+      {
+        "lyrics": "it",
+        "chords": "Am"
+      },
+      {
+        "lyrics": "right",
+        "chords": "F"
+      }
+    ]
+  ]
+}

@@ -1,0 +1,109 @@
+{
+  "title": "Bohemian Rhapsody",
+  "artist": "Queen",
+  "image": "Bohemian_Rhapsody.jpg",
+  "lyrics": [
+    [
+      {
+        "lyrics": "Is",
+        "chords": "Bb"
+      },
+      {
+        "lyrics": "this"
+      },
+      {
+        "lyrics": "the"
+      },
+      {
+        "lyrics": "real",
+        "chords": "Gm"
+      },
+      {
+        "lyrics": "life?"
+      }
+    ],
+    [
+      {
+        "lyrics": "Is",
+        "chords": "Cm"
+      },
+      {
+        "lyrics": "this"
+      },
+      {
+        "lyrics": "just"
+      },
+      {
+        "lyrics": "fantasy?"
+      }
+    ],
+    [
+      {
+        "lyrics": "Caught",
+        "chords": "F"
+      },
+      {
+        "lyrics": "in"
+      },
+      {
+        "lyrics": "a"
+      },
+      {
+        "lyrics": "landslide,"
+      }
+    ],
+    [
+      {
+        "lyrics": "No",
+        "chords": "Bb"
+      },
+      {
+        "lyrics": "escape"
+      },
+      {
+        "lyrics": "from",
+        "chords": "Gm"
+      },
+      {
+        "lyrics": "reality"
+      }
+    ],
+    [
+      {
+        "lyrics": "Open",
+        "chords": "Eb"
+      },
+      {
+        "lyrics": "your"
+      },
+      {
+        "lyrics": "eyes,"
+      }
+    ],
+    [
+      {
+        "lyrics": "Look",
+        "chords": "F"
+      },
+      {
+        "lyrics": "up"
+      },
+      {
+        "lyrics": "to"
+      },
+      {
+        "lyrics": "the"
+      },
+      {
+        "lyrics": "skies",
+        "chords": "Gm"
+      },
+      {
+        "lyrics": "and"
+      },
+      {
+        "lyrics": "see"
+      }
+    ]
+  ]
+}
