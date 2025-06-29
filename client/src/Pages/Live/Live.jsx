@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import useSocket from "../../hooks/useSocket";
 import styles from "./Live.module.css";
@@ -19,7 +19,7 @@ export default function Live() {
 
   const socket = useSocket({ sessionId, onSong: () => {} });
 
-  const sessionEndedHandler = () => {
+  const sessionEndedHandler = useCallback(() => {
     sessionStorage.removeItem("sessionId");
     sessionStorage.removeItem("joinedSession");
     sessionStorage.removeItem("song");
@@ -29,13 +29,14 @@ export default function Live() {
     } else {
       navigate("/player", { replace: true });
     }
-  };
+  }, [navigate]);
 
   useEffect(() => {
     if (!song) {
       navigate(role === "admin" ? "/admin" : "/player", { replace: true });
     }
   }, [song, role, navigate]);
+
   useEffect(() => {
     if (!socket) return;
     const toggleHandler = ({ isScrolling }) => setScrollOn(isScrolling);
@@ -46,7 +47,7 @@ export default function Live() {
       socket.off("scrollToggled", toggleHandler);
       socket.off("sessionEnded", sessionEndedHandler);
     };
-  }, [socket, navigate]);
+  }, [socket, sessionEndedHandler]);
 
   useEffect(() => {
     clearInterval(scrollInt.current);

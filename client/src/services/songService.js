@@ -11,11 +11,10 @@ export async function searchSongs(query) {
     "Matanot_Ketannot",
   ];
   const results = [];
-
+  const BASE_URL = process.env.REACT_APP_API_URL;
+  console.log(BASE_URL);
   for (const file of list) {
-    const { data } = await axios.get(
-      `http://localhost:5000/songs/${file}.json` //url
-    );
+    const { data } = await axios.get(`${BASE_URL}/songs/${file}.json`);
     const haystack = `${data.title} ${data.artist}`.toLowerCase();
     if (haystack.includes(query.toLowerCase())) results.push({ ...data, file });
   }
