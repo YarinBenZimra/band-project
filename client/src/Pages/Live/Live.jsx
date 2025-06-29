@@ -4,47 +4,42 @@ import useSocket from "../../hooks/useSocket";
 import styles from "./Live.module.css";
 
 export default function Live() {
-  /* ====== props from router ====== */
   const { state } = useLocation();
   const navigate = useNavigate();
-  const song = state?.song;
-  // חשוב: לקחת sessionId גם מ-sessionStorage אם אין ב-state
+
+  const song =
+    state?.song || JSON.parse(sessionStorage.getItem("song") || "null");
   const sessionId = state?.sessionId || sessionStorage.getItem("sessionId");
   const role = sessionStorage.getItem("role");
   const instrument = sessionStorage.getItem("instrument");
 
-  /* ====== scrolling ====== */
   const [scrollOn, setScrollOn] = useState(false);
   const contentRef = useRef(null);
   const scrollInt = useRef(null);
 
-  /* ====== socket ====== */
   const socket = useSocket({ sessionId, onSong: () => {} });
 
-  /* מאזינים לאירועים */
-  useEffect(() => {
-    if (!socket) {
-      console.log("⚠️ Socket is null in Live page!");
-      return;
+  const sessionEndedHandler = () => {
+    sessionStorage.removeItem("sessionId");
+    sessionStorage.removeItem("joinedSession");
+    sessionStorage.removeItem("song");
+    const userRole = sessionStorage.getItem("role");
+    if (userRole === "admin") {
+      navigate("/admin", { replace: true });
+    } else {
+      navigate("/player", { replace: true });
     }
+  };
 
-    console.log("✅ Socket connected in Live page:", socket.id);
-
+  useEffect(() => {
+    if (!song) {
+      navigate(role === "admin" ? "/admin" : "/player", { replace: true });
+    }
+  }, [song, role, navigate]);
+  useEffect(() => {
+    if (!socket) return;
     const toggleHandler = ({ isScrolling }) => setScrollOn(isScrolling);
     socket.on("scrollToggled", toggleHandler);
-
-    const sessionEndedHandler = () => {
-      sessionStorage.removeItem("sessionId");
-      sessionStorage.removeItem("joinedSession");
-
-      const userRole = sessionStorage.getItem("role");
-      if (userRole === "admin") {
-        navigate("/admin", { replace: true });
-      } else {
-        navigate("/player", { replace: true });
-      }
-    };
-
     socket.on("sessionEnded", sessionEndedHandler);
 
     return () => {
@@ -53,7 +48,6 @@ export default function Live() {
     };
   }, [socket, navigate]);
 
-  /* הפעלת / כיבוי סקרול מקומי */
   useEffect(() => {
     clearInterval(scrollInt.current);
     if (scrollOn) {
@@ -64,31 +58,14 @@ export default function Live() {
     return () => clearInterval(scrollInt.current);
   }, [scrollOn]);
 
-  /* ====== פונקציה לסגירת סשן ====== */
   const handleQuitSession = () => {
     if (socket && sessionId) {
-      console.log(
-        "📤 Quit button clicked, socket:",
-        socket.id,
-        "sessionId:",
-        sessionId
-      );
       socket.emit("quitSession", { sessionId });
-    } else {
-      console.log("❌ Cannot quit - socket or sessionId missing", {
-        socket,
-        sessionId,
-      });
     }
   };
 
-  /* ====== guard ====== */
-  if (!song) return <p>No song data</p>;
-
-  /* ====== helpers ====== */
   const renderChunk = (chunk, idx) => {
-    /* לזמרים מציגים רק מילים, בלי אקורדים */
-    if (instrument === "vocals")
+    if (instrument === "vocals") {
       return (
         <span key={idx} className={styles.wordChunk}>
           <span className={styles.chord} style={{ visibility: "hidden" }}>
@@ -97,8 +74,8 @@ export default function Live() {
           <span className={styles.lyric}>{chunk.lyrics}</span>
         </span>
       );
+    }
 
-    /* שאר הנגנים - מציגים אקורד אם יש */
     return (
       <span key={idx} className={styles.wordChunk}>
         <span
@@ -112,14 +89,13 @@ export default function Live() {
     );
   };
 
-  /* ====== JSX ====== */
   return (
     <div className={styles.wrapper}>
-      <h1>{song.title}</h1>
-      <h3>{song.artist}</h3>
+      <h1>{song?.title}</h1>
+      <h3>{song?.artist}</h3>
 
       <div className={styles.content} ref={contentRef}>
-        {song.lyrics.map((line, i) => (
+        {song?.lyrics.map((line, i) => (
           <p key={i}>{line.map(renderChunk)}</p>
         ))}
       </div>

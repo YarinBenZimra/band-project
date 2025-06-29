@@ -10,13 +10,11 @@ export default function PlayerMain() {
   const storedSessionId = sessionStorage.getItem("sessionId");
   const [sessionId, setSessionId] = useState(storedSessionId || null);
 
-  // מעבר ל־Live כשהתקבל שיר
   const handleSong = (song) => {
     const id = sessionId || sessionStorage.getItem("sessionId");
     navigate("/live", { state: { sessionId: id, song } });
   };
 
-  // הוספת handler ל-sessionStarted
   const handleSessionStarted = (newSessionId) => {
     setSessionId(newSessionId);
   };
@@ -31,9 +29,9 @@ export default function PlayerMain() {
     <div className={styles.wrapper}>
       <FloatingNotes />
       <div className={styles.userName}>
-        {sessionStorage.getItem("username") || "Player"}
+        Welcome {sessionStorage.getItem("username") || "Player"}
       </div>
-      <h1>Waiting for next song…</h1>
+      <h1 className={styles.title}>Waiting for next song…</h1>
       <div className={styles.spinner} />
     </div>
   );

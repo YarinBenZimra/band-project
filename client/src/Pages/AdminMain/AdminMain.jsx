@@ -6,7 +6,6 @@ import { searchSongs } from "../../services/songService";
 import styles from "./AdminMain.module.css";
 
 export default function AdminMain() {
-  /* ----------- state בסיסי ----------- */
   const location = useLocation();
   const { state } = location;
   const navigate = useNavigate();
@@ -21,43 +20,35 @@ export default function AdminMain() {
   const debounceRef = useRef(null);
   const isNavigatingToLive = useRef(false);
 
-  /* ----------- socket ----------- */
   const handleSong = useCallback(
     (song) => {
-      isNavigatingToLive.current = true; // סמן שעוברים ל-Live
+      isNavigatingToLive.current = true;
       navigate("/live", { state: { sessionId, song } });
     },
     [navigate, sessionId]
   );
   const socket = useSocket({ sessionId, onSong: handleSong });
 
-  /* ----------- בדיקה אם חזרנו מ-Live עם סשן פעיל ----------- */
   useEffect(() => {
-    // אם יש sessionId ב-storage אבל לא ב-state, כנראה חזרנו מ-Live
     if (storedSessionId && !state?.sessionId) {
       setSessionId(storedSessionId);
     }
   }, [storedSessionId, state]);
 
-  /* ----------- cleanup כשיוצאים מהדף ----------- */
   useEffect(() => {
     return () => {
-      // אם לא עוברים ל-Live, סגור את הסשן
       if (!isNavigatingToLive.current) {
         const activeSessionId = sessionStorage.getItem("sessionId");
         if (activeSessionId && socket) {
-          console.log("👋 Leaving AdminMain (not to Live) – quitting session");
           socket.emit("quitSession", { sessionId: activeSessionId });
           sessionStorage.removeItem("sessionId");
           sessionStorage.removeItem("joinedSession");
         }
       }
-      // אפס את הדגל
       isNavigatingToLive.current = false;
     };
   }, [socket]);
 
-  /* ----------- start session ----------- */
   const handleStart = async () => {
     setError("");
     try {
@@ -69,7 +60,6 @@ export default function AdminMain() {
     }
   };
 
-  /* ----------- סגירת סשן וחזרה ----------- */
   const handleBack = () => {
     if (socket && sessionId) {
       socket.emit("quitSession", { sessionId });
@@ -83,7 +73,6 @@ export default function AdminMain() {
     setError("");
   };
 
-  /* ----------- live search ----------- */
   const handleChange = (e) => {
     const val = e.target.value;
     setQuery(val);
@@ -105,7 +94,6 @@ export default function AdminMain() {
     }, 300);
   };
 
-  /* ----------- בחירת שיר ----------- */
   const handleSelect = (song) => {
     socket?.emit("selectSong", { sessionId, song });
   };
@@ -125,7 +113,7 @@ export default function AdminMain() {
             onClick={handleBack}
             type="button"
           >
-            ← End Session & Back
+            End Session & Back
           </button>
 
           <h2>Search any song…</h2>

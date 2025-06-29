@@ -20,20 +20,17 @@ export default function useSocket({ sessionId, onSong, onSessionStarted }) {
     socketRef.current = socket;
 
     socket.on("connect", () => {
-      console.log("Socket connected", socket.id);
       socket.emit("joinLobby");
     });
 
-    socket.on("disconnect", () =>
-      console.log("Socket disconnected", socket.id)
-    );
+    socket.on("disconnect", () => {});
 
-    // מאזין לשיר חדש
-    socket.on("songSelected", ({ song }) => handlerRef.current?.(song));
+    socket.on("songSelected", ({ song }) => {
+      sessionStorage.setItem("song", JSON.stringify(song));
+      handlerRef.current?.(song);
+    });
 
-    // מאזין ל-sessionStarted
     socket.on("sessionStarted", ({ sessionId }) => {
-      console.log("🔔 sessionStarted received (via socket):", sessionId);
       sessionStorage.setItem("sessionId", sessionId);
       sessionHandlerRef.current?.(sessionId);
     });
@@ -65,7 +62,5 @@ export default function useSocket({ sessionId, onSong, onSessionStarted }) {
     }
   }, [sessionId]);
 
-  // תיקון: תמיד החזר את ה-socket מ-getSocket
-  // אם עדיין לא נשמר ב-ref
   return socketRef.current || getSocket();
 }

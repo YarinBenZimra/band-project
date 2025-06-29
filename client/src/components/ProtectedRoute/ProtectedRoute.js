@@ -1,22 +1,32 @@
 import { Navigate, useLocation } from "react-router-dom";
-
-const ProtectedRoute = ({ children, requireAdmin = false }) => {
+const ProtectedRoute = ({
+  children,
+  requireAdmin = false,
+  requireSession = false,
+  requireSong = false,
+}) => {
   const token = sessionStorage.getItem("token");
   const role = sessionStorage.getItem("role");
+  const sessionId = sessionStorage.getItem("sessionId");
+  const song = sessionStorage.getItem("song");
   const location = useLocation();
 
-  // אם אין טוקן - הפנה ללוגין
   if (!token) {
-    // שמירת הנתיב הנוכחי לחזרה אחרי הלוגין
     return <Navigate to="/login" state={{ from: location }} replace />;
   }
 
-  // אם צריך אדמין אבל המשתמש לא אדמין
   if (requireAdmin && role !== "admin") {
     return <Navigate to="/player" replace />;
   }
 
-  // אם הכל בסדר - הצג את הקומפוננטה
+  if (requireSession && !sessionId) {
+    return <Navigate to={role === "admin" ? "/admin" : "/player"} replace />;
+  }
+
+  if (requireSong && !song) {
+    return <Navigate to={role === "admin" ? "/admin" : "/player"} replace />;
+  }
+
   return children;
 };
 

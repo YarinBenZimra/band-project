@@ -14,7 +14,7 @@ export async function searchSongs(query) {
 
   for (const file of list) {
     const { data } = await axios.get(
-      `http://localhost:5000/songs/${file}.json`
+      `http://localhost:5000/songs/${file}.json` //url
     );
     const haystack = `${data.title} ${data.artist}`.toLowerCase();
     if (haystack.includes(query.toLowerCase())) results.push({ ...data, file });

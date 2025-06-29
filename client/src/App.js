@@ -10,14 +10,12 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* ניתוב ראשי - בודק אם המשתמש מחובר ומפנה בהתאם */}
         <Route path="/" element={<RootRedirect />} />
 
-        {/* דפים פתוחים */}
         <Route path="/signup" element={<Signup />} />
+        <Route path="/signup/admin" element={<Signup />} />
         <Route path="/login" element={<Login />} />
 
-        {/* דפים מוגנים */}
         <Route
           path="/player"
           element={
@@ -37,20 +35,18 @@ function App() {
         <Route
           path="/live"
           element={
-            <ProtectedRoute>
+            <ProtectedRoute requireSession requireSong>
               <Live />
             </ProtectedRoute>
           }
         />
 
-        {/* fallback */}
         <Route path="*" element={<h1>404 - Page Not Found</h1>} />
       </Routes>
     </BrowserRouter>
   );
 }
 
-// קומפוננטת עזר להפניה מהדף הראשי
 function RootRedirect() {
   const token = sessionStorage.getItem("token");
   const role = sessionStorage.getItem("role");

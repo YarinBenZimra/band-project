@@ -11,13 +11,12 @@
   text-align: center;
 }
 
-h1 {
+.title {
   font-size: 2rem;
   margin-bottom: 24px;
   text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
 }
 
-/* עיגול מסתובב קטן */
 .spinner {
   width: 50px;
   height: 50px;
@@ -33,10 +32,15 @@ h1 {
   left: 10px;
   font-size: 1.2rem;
   margin-top: 16px;
-  color: #e3f2fd; /* כחול בהיר */
+  color: #e3f2fd;
 }
 @keyframes spin {
   to {
     transform: rotate(360deg);
+  }
+}
+@media (max-width: 768px) {
+  .title {
+    font-size: 1.3rem;
   }
 }

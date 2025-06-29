@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import api from "../../services/api";
 import styles from "./Login.module.css";
 import FloatingNotes from "../../components/FloatingNotes/FloatingNotes";
-import avatar from "../../assets/login/loginAvatar.png"; // משתמשים באותו אייקון
-import musicBg from "../../assets/signup/signupBG.jpg"; // רקע זהה
+import avatar from "../../assets/login/loginAvatar.png";
+import musicBg from "../../assets/signup/signupBG.jpg";
 
 export default function Login() {
   const [form, setForm] = useState({ username: "", password: "" });
@@ -24,7 +24,6 @@ export default function Login() {
       sessionStorage.setItem("instrument", res.data.instrument);
       sessionStorage.setItem("username", form.username);
 
-      // ניווט לפי תפקיד
       if (res.data.role === "admin") navigate("/admin");
       else navigate("/player");
     } catch (err) {
@@ -34,7 +33,6 @@ export default function Login() {
 
   return (
     <div className={styles.container}>
-      {/* LEFT */}
       <div
         className={styles.left}
         style={{ backgroundImage: `url(${musicBg})` }}
@@ -44,7 +42,6 @@ export default function Login() {
         <FloatingNotes />
       </div>
 
-      {/* RIGHT */}
       <div className={styles.right}>
         <div className={styles.card}>
           <img src={avatar} alt="avatar" className={styles.avatar} />
@@ -74,7 +71,7 @@ export default function Login() {
             <button type="submit">Enter</button>
           </form>
 
-          <p className={styles.signupLink}>
+          <p className={styles.loginLink}>
             New here?{" "}
             <span onClick={() => navigate("/signup")}>Create account</span>
           </p>

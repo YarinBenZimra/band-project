@@ -25,7 +25,6 @@ module.exports = (io, socket) => {
         `On Socket [${socket.id}] the User [${socket.user.id}] User Name [${socket.user.username}] joined room ${sessionId}`
       );
 
-      // 🟢 NEW: שליחת שיר נוכחי אם קיים
       if (session.currentSong) {
         socket.emit("songSelected", { song: session.currentSong });
         console.log(
@@ -60,7 +59,6 @@ module.exports = (io, socket) => {
 
   socket.on("toggleScroll", ({ sessionId, isScrolling }) => {
     io.to(sessionId).emit("scrollToggled", { isScrolling });
-    console.log(`scroll ${isScrolling ? "▶" : "⏸"} in room ${sessionId}`);
   });
 
   async function closeSession(io, sessionId) {
@@ -78,7 +76,7 @@ module.exports = (io, socket) => {
 
   socket.on("quitSession", async ({ sessionId }) => {
     try {
-      console.log("📥 quitSession received:", sessionId);
+      console.log("quitSession received:", sessionId);
       console.log(
         "By user:",
         socket.user?.username,
@@ -87,13 +85,13 @@ module.exports = (io, socket) => {
       );
 
       if (socket.user.role !== "admin") {
-        console.log("⛔ Not admin – skipping session close");
+        console.log("Not admin – skipping session close");
         return socket.emit("error", { message: "Admin Only" });
       }
 
       const ok = await closeSession(io, sessionId);
       if (!ok) {
-        console.log("⚠️ Could not close session", sessionId);
+        console.log("Could not close session", sessionId);
         socket.emit("error", { message: "Session not found" });
       }
     } catch (err) {
