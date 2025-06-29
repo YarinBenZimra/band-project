@@ -112,7 +112,7 @@ npm start
 
 Both the **client** and **server** were deployed on **Render**:
 
-- [https://band-project-client.onrender.com](https://band-client.onrender.com)
+- [https://band-client.onrender.com](https://band-client.onrender.com)
 
 ---
 
